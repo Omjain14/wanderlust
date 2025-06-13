@@ -16,7 +16,7 @@ const flash = require("connect-flash");
 const passport=require("passport");
 const LocalStrategy=require("passport-local");
 const User=require("./models/user.js");
-
+const Listing = require("./models/listing");
 
 const listingRouter=require("./routes/listing.js");
 const reviewsRouter=require("./routes/reviews.js");
@@ -102,8 +102,9 @@ app.use((req,res,next)=>{
 // });
 
 //this down code is new change for home page
-app.get("/", (req, res) => {
-  res.render("home");
+app.get("/", async (req, res) => {
+  const allListings = await Listing.find({});
+  res.render("listings/index", { allListings });
 });
 
 
