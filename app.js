@@ -101,13 +101,15 @@ app.use((req,res,next)=>{
 //  res.send(registeredUser);
 // });
 
-app.use("/listings",listingRouter);
-app.use("/listings/:id/reviews",reviewsRouter)
-app.use("/",userRouter)
 //this down code is new change for home page
 app.get("/", (req, res) => {
   res.render("home");
 });
+
+
+app.use("/listings",listingRouter);
+app.use("/listings/:id/reviews",reviewsRouter);
+app.use("/",userRouter);
 
 
 // app.use((req, res, next) => {
