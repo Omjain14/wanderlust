@@ -104,11 +104,15 @@ app.use((req,res,next)=>{
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewsRouter)
 app.use("/",userRouter)
-
-
-app.use((req, res, next) => {
-  next(new ExpressError(404, "Page Not Found!"));
+//this down code is new change for home page
+app.get("/", (req, res) => {
+  res.render("home");
 });
+
+
+// app.use((req, res, next) => {
+//   next(new ExpressError(404, "Page Not Found!"));
+// });
 
 app.all("*", (req, res, next) => {
   return next(new ExpressError(404, "Page Not Found!"));
